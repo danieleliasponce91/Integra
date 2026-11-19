@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1d4ed8">
+    <title>Integra | Acompañamos y conectamos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #58595B;
+            --green: #7CB928;
+            --green-dark: #638f20;
+            --turquoise: #00A9B5;
+            --turquoise-light: #e8f7f8;
+            --gray-medium: #8C8D8E;
+            --gray-light: #f2f3f3;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand { font-family: "Manrope", sans-serif; }
+        section { scroll-margin-top: 86px; }
+
+        .navbar {
+            min-height: 76px;
+            background: rgba(255, 255, 255, .96);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand { color: var(--green) !important; letter-spacing: -1px; }
+        .brand-mark {
+            width: auto;
+            height: 72px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .brand-mark img {
+            display: block;
+            max-width: 300px;
+            max-height: 72px;
+            width: auto;
+            height: auto;
+        }
+
+        footer .brand-mark img {
+            max-width: 320px;
+            max-height: 82px;
+        }
+
+        .nav-link { color: var(--ink); font-weight: 600; margin: 0 .15rem; }
+        .nav-link:hover, .nav-link.active { color: var(--turquoise) !important; }
+
+        .btn-primary,
+        .btn-donate {
+            background: var(--green);
+            border-color: var(--green);
+            color: #fff;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+        .btn-primary:hover,
+        .btn-primary:focus,
+        .btn-donate:hover,
+        .btn-donate:focus {
+            background: var(--green-dark);
+            border-color: var(--green-dark);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .btn-outline-primary {
+            color: var(--turquoise);
+            border-color: var(--turquoise);
+            border-radius: 999px;
+        }
+        .btn-outline-primary:hover,
+        .btn-outline-primary:focus {
+            background: var(--turquoise);
+            border-color: var(--turquoise);
+            color: #fff;
+        }
+
+        .hero {
+            min-height: 620px;
+            background:
+                linear-gradient(105deg, rgba(232,247,248,.98) 0%, rgba(232,247,248,.92) 48%, rgba(232,247,248,.2) 75%),
+                url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1800&q=85") center/cover;
+        }
+
+        .hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); line-height: .98; letter-spacing: -3px; color: var(--ink); }
+        .hero-copy { max-width: 590px; }
+        .eyebrow { color: var(--turquoise); font-weight: 800; letter-spacing: 2px; font-size: .78rem; }
+
+        .text-primary { color: var(--green) !important; }
+        .section-title { font-size: clamp(2rem, 5vw, 3.25rem); letter-spacing: -2px; color: var(--ink); }
+        .blue-section { background: var(--turquoise); color: white; }
+        .cream-section { background: var(--gray-light); }
+
+        .feature-card {
+            height: 100%; border: 0; border-radius: 22px;
+            background: white; box-shadow: 0 15px 40px rgba(88, 89, 91, .08);
+            transition: .25s ease;
+        }
+        .feature-card:hover { transform: translateY(-6px); }
+        .feature-icon {
+            width: 58px; height: 58px; border-radius: 18px;
+            display: grid; place-items: center;
+            background: var(--turquoise-light); color: var(--green); font-size: 1.5rem;
+        }
+
+        .photo-card { border-radius: 28px; overflow: hidden; min-height: 420px; }
+        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .stat-number { font-family: "Manrope"; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 800; color: var(--green); }
+        .service-number { color: rgba(255,255,255,.28); font-family: "Manrope"; font-size: 3.5rem; line-height: 1; }
+
+        .contact-box { border-radius: 28px; background: white; box-shadow: 0 18px 50px rgba(88,89,91,.12); }
+        .form-control { border: 1px solid var(--gray-medium); border-radius: 12px; padding: .78rem 1rem; }
+        .form-control:focus { border-color: var(--turquoise); box-shadow: 0 0 0 .25rem rgba(0,169,181,.12); }
+
+        footer { background: var(--ink); color: #dfe1e1; }
+        footer a { color: #dfe1e1; text-decoration: none; }
+        footer a:hover { color: var(--green); }
+
+        .floating-whatsapp {
+            position: fixed; right: 18px; bottom: 18px; z-index: 1000;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--green); color: white; display: grid; place-items: center;
+            font-size: 1.55rem; box-shadow: 0 8px 24px rgba(124,185,40,.35);
+        }
+
+        @media (max-width: 991.98px) {
+            .hero { min-height: 560px; background-position: 62% center; }
+            .hero h1 { letter-spacing: -2px; }
+            .navbar-collapse { background: white; padding: 1rem; margin-top: .75rem; border-radius: 16px; box-shadow: 0 12px 30px rgba(23,36,60,.12); }
+        }
+
+        @media (max-width: 575.98px) {
+            .brand-mark,
+            .brand-mark img {
+                height: 58px;
+                max-height: 58px;
+            }
+            .brand-mark img {
+                max-width: 220px;
+            }
+            .hero { min-height: 520px; background: linear-gradient(rgba(232,247,248,.94), rgba(232,247,248,.94)), url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=85") 60% center/cover; }
+            .hero h1 { font-size: 2.65rem; }
+            .section-title { letter-spacing: -1px; }
+            .photo-card { min-height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm" aria-label="Navegación principal">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold fs-3" href="#inicio" aria-label="Integra - Inicio">
+                <span class="brand-mark"><img src="img/LOGO.jpeg" alt="Integra - Desarrollo sanitario, educativo y social"></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">NOSOTROS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#voluntariado">VOLUNTARIADO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#capacitaciones">CAPACITACIONES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teleasistencia">TELEASISTENCIA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">CONTACTO</a></li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><button class="btn btn-donate px-3 py-2" data-bs-toggle="modal" data-bs-target="#donacionModal"><i class="bi bi-heart-fill me-1"></i> Donar</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero d-flex align-items-center pt-5" id="inicio">
+            <div class="container py-5">
+                <div class="hero-copy">
+                    <p class="eyebrow mb-3">CONSTRUYENDO PUENTES</p>
+                    <h1 class="fw-bold mb-4">Nadie debería sentirse solo.</h1>
+                    <p class="lead mb-4">Acompañamos a personas mayores y a sus familias para que puedan vivir con autonomía, seguridad y participación.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a class="btn btn-primary btn-lg rounded-pill px-4" href="#nosotros">Conocer nuestra misión</a>
+                        <a class="btn btn-light btn-lg rounded-pill px-4 border" href="#contacto"><i class="bi bi-chat-dots me-2"></i>Hablar con nosotros</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5" id="nosotros">
+            <div class="container py-lg-5">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6">
+                        <p class="eyebrow">NOSOTROS</p>
+                        <h2 class="section-title fw-bold mt-2 mb-4">Cuidar también es crear comunidad.</h2>
+                        <p class="fs-5 text-secondary mb-4">Integra es una organización dedicada a promover el bienestar y la inclusión de las personas mayores. Trabajamos junto a familias, profesionales y voluntarios para brindar apoyo cercano y personalizado.</p>
+                        <a href="#contacto" class="fw-bold text-decoration-none">Conocé cómo participar <i class="bi bi-arrow-right ms-2"></i></a>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="photo-card"><img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=1000&q=85" alt="Personas adultas compartiendo una actividad"></div>
+                    </div>
+                </div>
+                <div class="row g-4 pt-5 mt-lg-4">
+                    <div class="col-6 col-md-4"><div class="stat-number text-primary">12+</div><p class="mb-0 text-secondary">Años acompañando</p></div>
+                    <div class="col-6 col-md-4"><div class="stat-number text-primary">350</div><p class="mb-0 text-secondary">Personas asistidas</p></div>
+                    <div class="col-6 col-md-4"><div class="stat-number text-primary">80+</div><p class="mb-0 text-secondary">Voluntarios activos</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cream-section py-5" id="voluntariado">
+            <div class="container py-lg-5">
+                <div class="text-center mx-auto mb-5" style="max-width: 700px">
+                    <p class="eyebrow">VOLUNTARIADO</p>
+                    <h2 class="section-title fw-bold mt-2">Tu tiempo puede transformar vidas</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4"><article class="feature-card p-4 p-lg-5"><div class="feature-icon mb-4"><i class="bi bi-person-heart"></i></div><h3 class="h4 fw-bold">Acompañar</h3><p class="text-secondary">Compartí charlas, paseos y actividades con personas mayores en tu comunidad.</p></article></div>
+                    <div class="col-md-4"><article class="feature-card p-4 p-lg-5"><div class="feature-icon mb-4"><i class="bi bi-phone"></i></div><h3 class="h4 fw-bold">Conectar</h3><p class="text-secondary">Ayudá a mejorar los vínculos digitales y la comunicación con familias y seres queridos.</p></article></div>
+                    <div class="col-md-4"><article class="feature-card p-4 p-lg-5"><div class="feature-icon mb-4"><i class="bi bi-people"></i></div><h3 class="h4 fw-bold">Participar</h3><p class="text-secondary">Sumate a talleres, encuentros comunitarios y acciones solidarias en equipo.</p></article></div>
+                </div>
+                <div class="text-center mt-5"><a href="#contacto" class="btn btn-primary rounded-pill px-5 py-3 fw-bold">Quiero ser voluntario</a></div>
+            </div>
+        </section>
+
+        <section class="blue-section py-5" id="capacitaciones">
+            <div class="container py-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5"><p class="eyebrow text-white-50">CAPACITACIONES</p><h2 class="section-title fw-bold mt-2 mb-4">Aprender para cuidar mejor.</h2><p class="lead text-white-50">Formación práctica y accesible para cuidadores, familias y profesionales.</p></div>
+                    <div class="col-lg-7">
+                        <div class="d-flex gap-4 py-4 border-bottom border-white border-opacity-25"><span class="service-number">01</span><div><h3 class="h4">Cuidados y bienestar</h3><p class="mb-0 text-white-50">Herramientas para acompañar la salud física y emocional.</p></div></div>
+                        <div class="d-flex gap-4 py-4 border-bottom border-white border-opacity-25"><span class="service-number">02</span><div><h3 class="h4">Prevención de riesgos</h3><p class="mb-0 text-white-50">Orientación sobre seguridad, autonomía y entornos protectores.</p></div></div>
+                        <div class="d-flex gap-4 py-4"><span class="service-number">03</span><div><h3 class="h4">Inclusión digital</h3><p class="mb-0 text-white-50">Uso seguro de teléfonos, aplicaciones y servicios en línea.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5" id="teleasistencia">
+            <div class="container py-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <p class="eyebrow">TELEASISTENCIA</p>
+                        <h2 class="section-title fw-bold mt-2 mb-4">Un llamado a tiempo puede marcar la diferencia.</h2>
+                        <p class="fs-5 text-secondary">Brindamos atención telefónica y seguimiento personalizado para acompañar, orientar y responder ante situaciones cotidianas o de urgencia.</p>
+                        <ul class="list-unstyled mt-4">
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i> Contención y escucha</li>
+                            <li class="mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i> Orientación personalizada</li>
+                            <li><i class="bi bi-check-circle-fill text-primary me-2"></i> Seguimiento periódico</li>
+                        </ul>
+                        <a class="btn btn-outline-primary rounded-pill px-4 py-2 mt-2" href="#contacto">Solicitar información</a>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="photo-card"><img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1000&q=85" alt="Atención y acompañamiento telefónico"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cream-section py-5" id="contacto">
+            <div class="container py-lg-5">
+                <div class="contact-box p-4 p-md-5">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <p class="eyebrow">CONTACTO</p>
+                            <h2 class="section-title fw-bold mt-2">Hablemos.</h2>
+                            <p class="text-secondary mb-4">Contanos cómo podemos ayudarte. Nuestro equipo responderá a la brevedad.</p>
+                            <p class="mb-2"><i class="bi bi-telephone text-primary me-2"></i> <strong>0800 000 000</strong></p>
+                            <p class="mb-2"><i class="bi bi-envelope text-primary me-2"></i> hola@integra.org</p>
+                            <p><i class="bi bi-clock text-primary me-2"></i> Lunes a viernes, 9 a 17 h</p>
+                        </div>
+                        <div class="col-lg-7">
+                            <form id="contactForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label fw-semibold" for="nombre">Nombre</label><input class="form-control" id="nombre" name="nombre" type="text" placeholder="Tu nombre" required></div>
+                                    <div class="col-md-6"><label class="form-label fw-semibold" for="email">Correo electrónico</label><input class="form-control" id="email" name="email" type="email" placeholder="nombre@email.com" required></div>
+                                    <div class="col-12"><label class="form-label fw-semibold" for="asunto">Asunto</label><select class="form-select form-control" id="asunto" name="asunto"><option>Quiero ser voluntario</option><option>Necesito teleasistencia</option><option>Consultas sobre capacitaciones</option><option>Otra consulta</option></select></div>
+                                    <div class="col-12"><label class="form-label fw-semibold" for="mensaje">Mensaje</label><textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribí tu consulta" required></textarea></div>
+                                    <div class="col-12"><button class="btn btn-primary rounded-pill px-4 py-2 fw-bold" type="submit">Enviar mensaje <i class="bi bi-send ms-2"></i></button></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-5">
+        <div class="container"><div class="row g-4 align-items-center"><div class="col-md-6"><a class="navbar-brand d-inline-flex align-items-center" href="#inicio" aria-label="Integra - Inicio"><span class="brand-mark"><img src="img/LOGO.jpeg" alt="Integra"></span></a></div><div class="col-md-6 text-md-end"><a class="ms-3" href="#nosotros">Nosotros</a><a class="ms-3" href="#contacto">Contacto</a><a class="ms-3" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a class="ms-3" href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a></div></div><hr class="opacity-25 my-4"><div class="small">&copy; 2026 Integra. Todos los derechos reservados.</div></div>
+    </footer>
+
+    <a class="floating-whatsapp" href="https://wa.me/" target="_blank" aria-label="Contactar por WhatsApp"><i class="bi bi-whatsapp"></i></a>
+
+    <div class="modal fade" id="donacionModal" tabindex="-1" aria-labelledby="donacionTitulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content border-0 rounded-4"><div class="modal-header border-0"><h2 class="modal-title h4 fw-bold" id="donacionTitulo">Tu ayuda transforma vidas</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div><div class="modal-body px-4 pb-4"><p class="text-secondary">Elegí el importe con el que deseas colaborar:</p><div class="d-grid grid-gap-2"><div class="d-flex flex-wrap gap-2 mb-3"><button class="btn btn-outline-primary rounded-pill px-4">$1.000</button><button class="btn btn-outline-primary rounded-pill px-4">$2.500</button><button class="btn btn-outline-primary rounded-pill px-4">$5.000</button></div><button class="btn btn-donate btn-lg w-100 py-3">Continuar con la donación</button></div></div></div></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const button = this.querySelector('button[type="submit"]');
+            const original = button.innerHTML;
+            button.disabled = true;
+            button.innerHTML = 'Mensaje enviado <i class="bi bi-check2 ms-2"></i>';
+            setTimeout(() => { button.disabled = false; button.innerHTML = original; this.reset(); }, 1800);
+        });
+
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => link.addEventListener('click', () => {
+            const menu = document.querySelector('.navbar-collapse.show');
+            if (menu) bootstrap.Collapse.getOrCreateInstance(menu).hide();
+        }));
+    </script>
+</body>
+</html>
